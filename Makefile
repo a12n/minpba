@@ -38,3 +38,11 @@ _dl/sedutil-$(SEDUTIL_VSN).tar.gz:
 
 _build/sedutil:
 	tar -zxf _dl/sedutil-$(SEDUTIL_VSN).tar.gz --strip-components=1 -C $@
+
+_build/sedutil/config.h:
+	cd $(@D) &&	\
+	autoreconf -v -i &&	\
+	LDFLAGS='-static -static-libgcc -static-libstdc++'	\
+		./configure --prefix=/usr --sysconfdir=/etc	\
+			--mandir=/usr/share/man --infodir=/usr/share/info	\
+			--localstatedir=/var
