@@ -35,3 +35,6 @@ _dl/linux-$(LINUX_VSN).tar.xz:
 
 _dl/sedutil-$(SEDUTIL_VSN).tar.gz:
 	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
+
+_build/sedutil:
+	tar -zxf _dl/sedutil-$(SEDUTIL_VSN).tar.gz --strip-components=1 -C $@
