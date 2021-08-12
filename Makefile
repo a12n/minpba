@@ -32,6 +32,7 @@ _dl/busybox-$(BUSYBOX_VSN).tar.bz2:
 	wget -O $@ https://busybox.net/downloads/$(@F)
 
 _build/busybox:
+	mkdir $@
 	tar -jxf _dl/busybox-$(BUSYBOX_VSN).tar.bz2 --strip-components=1 -C $@
 
 #########
@@ -42,6 +43,7 @@ _dl/linux-$(LINUX_VSN).tar.xz:
 	wget -O $@ https://cdn.kernel.org/pub/linux/kernel/v5.x/$(@F)
 
 _build/linux:
+	mkdir $@
 	tar -Jxf _dl/linux-$(LINUX_VSN).tar.xz --strip-components=1 -C $@
 
 ###########
@@ -52,6 +54,7 @@ _dl/sedutil-$(SEDUTIL_VSN).tar.gz:
 	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
 
 _build/sedutil:
+	mkdir $@
 	tar -zxf _dl/sedutil-$(SEDUTIL_VSN).tar.gz --strip-components=1 -C $@
 
 _build/sedutil/config.h:
