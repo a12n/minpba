@@ -25,6 +25,10 @@ fetch:	\
 	_dl/linux-$(LINUX_VSN).tar.xz	\
 	_dl/sedutil-$(SEDUTIL_VSN).tar.gz
 
+install:	\
+	_target	\
+	_target/usr/sbin/sedutil-cli
+
 _build _dl _target:
 	test -d /tmp/$@ || mkdir /tmp/$@
 	ln -s /tmp/$@ $@
@@ -80,3 +84,7 @@ _build/sedutil/config.h:
 _build/sedutil/sedutil-cli:
 	make -C $(@D) -j
 	strip $@
+
+_target/usr/sbin/sedutil-cli:
+	mkdir -p $(@D)
+	cp _build/sedutil/sedutil-cli $@
