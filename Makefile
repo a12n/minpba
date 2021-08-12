@@ -6,18 +6,19 @@ checksum:
 	sha256sum -c SHA256
 
 fetch:	\
-	dl/busybox-$(BUSYBOX_VSN).tar.bz2	\
-	dl/linux-$(LINUX_VSN).tar.xz	\
-	dl/sedutil-$(SEDUTIL_VSN).tar.gz
+	_dl	\
+	_dl/busybox-$(BUSYBOX_VSN).tar.bz2	\
+	_dl/linux-$(LINUX_VSN).tar.xz	\
+	_dl/sedutil-$(SEDUTIL_VSN).tar.gz
 
-dl:
+_dl:
 	ln -s /tmp $@
 
-dl/busybox-$(BUSYBOX_VSN).tar.bz2: dl
+_dl/busybox-$(BUSYBOX_VSN).tar.bz2:
 	wget -O $@ https://busybox.net/downloads/$(@F)
 
-dl/sedutil-$(SEDUTIL_VSN).tar.gz: dl
+_dl/sedutil-$(SEDUTIL_VSN).tar.gz:
 	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
 
-dl/linux-$(LINUX_VSN).tar.xz: dl
+_dl/linux-$(LINUX_VSN).tar.xz:
 	wget -O $@ https://cdn.kernel.org/pub/linux/kernel/v5.x/$(@F)
