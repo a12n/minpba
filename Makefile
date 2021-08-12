@@ -32,6 +32,9 @@ _build/busybox:
 _dl/linux-$(LINUX_VSN).tar.xz:
 	wget -O $@ https://cdn.kernel.org/pub/linux/kernel/v5.x/$(@F)
 
+_build/linux:
+	tar -Jxf _dl/linux-$(LINUX_VSN).tar.xz --strip-components=1 -C $@
+
 ###########
 # sedutil #
 ###########
