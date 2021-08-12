@@ -69,5 +69,5 @@ _build/sedutil/config.h:
 			--localstatedir=/var
 
 _build/sedutil/sedutil-cli:
-	make -C $(@D)
+	make -C $(@D) -j
 	strip $@
