@@ -30,7 +30,7 @@ install:	\
 	_target/bin/busybox	\
 	_target/usr/sbin/sedutil-cli
 
-_build _dl _target:
+_build _dl _images _target:
 	test -d /tmp/$@ || mkdir /tmp/$@
 	ln -s /tmp/$@ $@
 
@@ -93,3 +93,13 @@ _build/sedutil/sedutil-cli:
 _target/usr/sbin/sedutil-cli:
 	mkdir -p $(@D)
 	cp _build/sedutil/sedutil-cli $@
+
+##############
+# filesystem #
+##############
+
+_images/rootfs.cpio:
+	cd _target && find . -depth | sort | cpio -o -v -H newc > ../$@
+
+_images/rootfs.cpio.gz:
+	gzip -9 $<
