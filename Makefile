@@ -9,6 +9,7 @@ checksum:
 	sha256sum -c SHA256
 
 configure:	\
+	_build/busybox/.config	\
 	_build/sedutil/config.h
 
 extract:	\
@@ -37,6 +38,10 @@ _dl/busybox-$(BUSYBOX_VSN).tar.bz2:
 _build/busybox:
 	mkdir $@
 	tar -jxf _dl/busybox-$(BUSYBOX_VSN).tar.bz2 --strip-components=1 -C $@
+
+_build/busybox/.config:
+	make -C $(@D) defconfig
+	sed -i 's|# CONFIG_STATIC is not set|CONFIG_STATIC=y|' $@
 
 #########
 # linux #
