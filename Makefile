@@ -27,6 +27,7 @@ fetch:	\
 
 install:	\
 	_target	\
+	_target/bin/busybox	\
 	_target/usr/sbin/sedutil-cli
 
 _build _dl _target:
@@ -50,6 +51,10 @@ _build/busybox/.config:
 
 _build/busybox/busybox:
 	make -C $(@D) -j
+
+_target/bin/busybox:
+	make CONFIG_PREFIX=$$(readlink -f _target) -C _build/busybox install
+	cp _build/busybox/busybox $@
 
 #########
 # linux #
