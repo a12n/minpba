@@ -11,7 +11,7 @@ fetch:	\
 	_dl/linux-$(LINUX_VSN).tar.xz	\
 	_dl/sedutil-$(SEDUTIL_VSN).tar.gz
 
-_dl:
+_build _dl:
 	ln -s /tmp $@
 
 _dl/busybox-$(BUSYBOX_VSN).tar.bz2:
