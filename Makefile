@@ -64,3 +64,7 @@ _build/sedutil/config.h:
 		./configure --prefix=/usr --sysconfdir=/etc	\
 			--mandir=/usr/share/man --infodir=/usr/share/info	\
 			--localstatedir=/var
+
+_build/sedutil/sedutil-cli:
+	make -C $(@D)
+	strip $@
