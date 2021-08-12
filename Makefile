@@ -5,6 +5,15 @@ SEDUTIL_VSN = 1.15.1.01
 checksum:
 	sha256sum -c SHA256
 
+configure:	\
+	_build/sedutil/config.h
+
+extract:	\
+	_build	\
+	_build/busybox	\
+	_build/linux	\
+	_build/sedutil
+
 fetch:	\
 	_dl	\
 	_dl/busybox-$(BUSYBOX_VSN).tar.bz2	\
