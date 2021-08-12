@@ -22,6 +22,9 @@ _build _dl _target:
 _dl/busybox-$(BUSYBOX_VSN).tar.bz2:
 	wget -O $@ https://busybox.net/downloads/$(@F)
 
+_build/busybox:
+	tar -jxf _dl/busybox-$(BUSYBOX_VSN).tar.bz2 --strip-components=1 -C $@
+
 #########
 # linux #
 #########
