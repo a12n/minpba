@@ -14,11 +14,23 @@ fetch:	\
 _build _dl:
 	ln -s /tmp $@
 
+###########
+# busybox #
+###########
+
 _dl/busybox-$(BUSYBOX_VSN).tar.bz2:
 	wget -O $@ https://busybox.net/downloads/$(@F)
 
-_dl/sedutil-$(SEDUTIL_VSN).tar.gz:
-	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
+#########
+# linux #
+#########
 
 _dl/linux-$(LINUX_VSN).tar.xz:
 	wget -O $@ https://cdn.kernel.org/pub/linux/kernel/v5.x/$(@F)
+
+###########
+# sedutil #
+###########
+
+_dl/sedutil-$(SEDUTIL_VSN).tar.gz:
+	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
