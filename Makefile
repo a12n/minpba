@@ -2,6 +2,9 @@ BUSYBOX_VSN = 1.33.1
 LINUX_VSN = 5.13.10
 SEDUTIL_VSN = 1.15.1.01
 
+build:	\
+	_build/sedutil/sedutil-cli
+
 checksum:
 	sha256sum -c SHA256
 
