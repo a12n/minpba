@@ -11,7 +11,7 @@ fetch:	\
 	_dl/linux-$(LINUX_VSN).tar.xz	\
 	_dl/sedutil-$(SEDUTIL_VSN).tar.gz
 
-_build _dl:
+_build _dl _target:
 	test -d /tmp/$@ || mkdir /tmp/$@
 	ln -s /tmp/$@ $@
 
