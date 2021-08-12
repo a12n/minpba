@@ -3,6 +3,7 @@ LINUX_VSN = 5.13.10
 SEDUTIL_VSN = 1.15.1.01
 
 build:	\
+	_build/busybox/busybox	\
 	_build/sedutil/sedutil-cli
 
 checksum:
@@ -42,6 +43,9 @@ _build/busybox:
 _build/busybox/.config:
 	make -C $(@D) defconfig
 	sed -i 's|# CONFIG_STATIC is not set|CONFIG_STATIC=y|' $@
+
+_build/busybox/busybox:
+	make -C $(@D) -j
 
 #########
 # linux #
