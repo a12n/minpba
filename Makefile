@@ -70,6 +70,7 @@ _build/linux:
 
 _build/linux/.config:
 	cp linux.config $@
+	sed -i "s|@INITRAMFS_SOURCE@|$$(readlink -f _target)|" $@
 
 _build/linux/arch/x86_64/boot/bzImage:
 	make -C $(@D) -j 4
