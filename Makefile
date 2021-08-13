@@ -4,14 +4,16 @@ SEDUTIL_VSN = 1.15.1.01
 
 build:	\
 	_build/busybox/busybox	\
-	_build/sedutil/sedutil-cli
+	_build/sedutil/sedutil-cli	\
+	_build/linux/arch/x86_64/boot/bzImage
 
 checksum:
 	sha256sum -c SHA256
 
 configure:	\
 	_build/busybox/.config	\
-	_build/sedutil/config.h
+	_build/sedutil/config.h	\
+	_build/linux/.config
 
 extract:	\
 	_build	\
