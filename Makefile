@@ -39,6 +39,16 @@ _build _dl _images _mnt _target:
 # busybox #
 ###########
 
+fetch-busybox: _dl _dl/busybox-$(BUSYBOX_VSN).tar.bz2
+
+extract-busybox: _build _build/busybox
+
+configure-busybox: _build/busybox/.config
+
+build-busybox: _build/busybox/busybox
+
+install-busybox: _target _target/bin/busybox
+
 _dl/busybox-$(BUSYBOX_VSN).tar.bz2:
 	wget -O $@ https://busybox.net/downloads/$(@F)
 
@@ -61,6 +71,14 @@ _target/bin/busybox:
 # linux #
 #########
 
+fetch-linux: _dl _dl/linux-$(LINUX_VSN).tar.xz
+
+extract-linux: _build _build/linux
+
+configure-linux: _build/linux/.config
+
+build-linux: _build/linux/arch/x86_64/boot/bzImage
+
 _dl/linux-$(LINUX_VSN).tar.xz:
 	wget -O $@ https://cdn.kernel.org/pub/linux/kernel/v5.x/$(@F)
 
@@ -78,6 +96,16 @@ _build/linux/arch/x86_64/boot/bzImage:
 ###########
 # sedutil #
 ###########
+
+fetch-sedutil: _dl _dl/sedutil-$(SEDUTIL_VSN).tar.gz
+
+extract-sedutil: _build _build/sedutil
+
+configure-sedutil: _build/sedutil/config.h
+
+build-sedutil: _build/sedutil/sedutil-cli
+
+install-sedutil: _target _target/usr/sbin/sedutil-cli
 
 _dl/sedutil-$(SEDUTIL_VSN).tar.gz:
 	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
