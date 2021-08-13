@@ -33,8 +33,7 @@ install:	\
 	_target/usr/sbin/sedutil-cli
 
 _build _dl _images _target:
-	test -d /tmp/$@ || mkdir /tmp/$@
-	ln -s /tmp/$@ $@
+	mkdir $@
 
 ###########
 # busybox #
