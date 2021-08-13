@@ -1,0 +1,16 @@
+#!/bin/sh
+
+/bin/mount -t devtmpfs devtmpfs /dev
+/bin/mount -t proc proc /proc
+/bin/mount -t sysfs sysfs /sys
+
+# locked=1
+# disks=$(/usr/sbin/sedutil-cli --scan | /usr/bin/awk '/^\/dev/ { print $1 }')
+# while [ $locked -ne 0 ]; do
+#     for disk in /dev/nvme?n?; do
+#         echo -n 'Password: '
+#         read -r -s password
+#     done
+# done
+
+sh
