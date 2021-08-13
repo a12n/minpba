@@ -68,7 +68,7 @@ _build/linux:
 	tar -Jxf _dl/linux-$(LINUX_VSN).tar.xz --strip-components=1 -C $@
 
 _build/linux/.config:
-	cp .config $@
+	cp linux.config $@
 
 _build/linux/arch/x86_64/boot/bzImage:
 	make -C $(@D) -j 4
