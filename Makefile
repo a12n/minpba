@@ -91,7 +91,7 @@ _build/linux/.config:
 	sed -i "s|@INITRAMFS_SOURCE@|$$(readlink -f _target)|" $@
 
 _build/linux/arch/x86_64/boot/bzImage:
-	make -C $(@D) -j 4
+	make -C _build/linux -j 4
 
 ###########
 # sedutil #
