@@ -2,10 +2,13 @@ BUSYBOX_VSN = 1.33.1
 LINUX_VSN = 5.13.10
 SEDUTIL_VSN = 1.15.1.01
 
-build:	\
-	_build/busybox/busybox	\
-	_build/sedutil/sedutil-cli	\
-	_build/linux/arch/x86_64/boot/bzImage
+all:	\
+	fetch-busybox fetch-linux fetch-sedutil	\
+	checksum	\
+	extract-busybox configure-busybox build-busybox install-busybox	\
+	extract-sedutil configure-sedutil build-sedutil install-sedutil	\
+	extract-linux configure-linux build-linux	\
+	build-image
 
 checksum:
 	sha256sum -c SHA256
