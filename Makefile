@@ -108,4 +108,4 @@ _images/rootfs.cpio:
 	cd _target && find . -depth | sort | cpio -o -v -H newc > ../$@
 
 _images/rootfs.cpio.gz:
-	gzip -9 $<
+	gzip -9 _images/rootfs.cpio
