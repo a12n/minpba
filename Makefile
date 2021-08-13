@@ -130,19 +130,20 @@ _target/usr/sbin/sedutil-cli:
 	mkdir -p $(@D)
 	cp _build/sedutil/sedutil-cli $@
 
-##############
-# filesystem #
-##############
+#########
+# image #
+#########
 
-_images/minpba.img:
+build-image: _images _images/minpba.img
+
+_images/minpba.img: _mnt
 	dd if=/dev/zero of=$@ bs=1M count=8
 	(echo 'n'; echo ''; echo ''; echo ''; echo 'ef00'; echo 'w'; echo 'Y') | gdisk $@
 	sudo losetup -P -v /dev/loop1 $@
 	sudo mkfs.vfat /dev/loop1p1
-	sudo mkdir $@-mount
-	sudo mount /dev/loop1p1 $@-mount
-	sudo chmod 777 $@-mount
-	sudo mkdir -p $@-mount/EFI/BOOT
-	sudo cp _build/linux/arch/x86_64/boot/bzImage $@-mount/EFI/BOOT/BOOTX64.EFI
-	sudo umount $@-mount
+	sudo mount /dev/loop1p1 _mnt
+	sudo chmod 777 _mnt
+	sudo mkdir -p _mnt/EFI/BOOT
+	sudo cp _build/linux/arch/x86_64/boot/bzImage _mnt/EFI/BOOT/BOOTX64.EFI
+	sudo umount _mnt
 	sudo losetup -d /dev/loop1
