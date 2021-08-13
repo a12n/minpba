@@ -18,14 +18,14 @@ configure:	\
 extract:	\
 	_build	\
 	_build/busybox	\
-	_build/linux	\
-	_build/sedutil
+	_build/sedutil	\
+	_build/linux
 
 fetch:	\
 	_dl	\
 	_dl/busybox-$(BUSYBOX_VSN).tar.bz2	\
-	_dl/linux-$(LINUX_VSN).tar.xz	\
-	_dl/sedutil-$(SEDUTIL_VSN).tar.gz
+	_dl/sedutil-$(SEDUTIL_VSN).tar.gz	\
+	_dl/linux-$(LINUX_VSN).tar.xz
 
 install:	\
 	_target	\
