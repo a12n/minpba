@@ -32,7 +32,7 @@ install:	\
 	_target/bin/busybox	\
 	_target/usr/sbin/sedutil-cli
 
-_build _dl _images _target:
+_build _dl _images _mnt _target:
 	mkdir $@
 
 ###########
