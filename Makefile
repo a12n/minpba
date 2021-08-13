@@ -13,28 +13,6 @@ all:	\
 checksum:
 	sha256sum -c SHA256
 
-configure:	\
-	_build/busybox/.config	\
-	_build/sedutil/config.h	\
-	_build/linux/.config
-
-extract:	\
-	_build	\
-	_build/busybox	\
-	_build/sedutil	\
-	_build/linux
-
-fetch:	\
-	_dl	\
-	_dl/busybox-$(BUSYBOX_VSN).tar.bz2	\
-	_dl/sedutil-$(SEDUTIL_VSN).tar.gz	\
-	_dl/linux-$(LINUX_VSN).tar.xz
-
-install:	\
-	_target	\
-	_target/bin/busybox	\
-	_target/usr/sbin/sedutil-cli
-
 _build _dl _images _mnt _target:
 	mkdir $@
 
