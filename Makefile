@@ -50,7 +50,7 @@ _build/busybox/.config:
 	sed -i 's|# CONFIG_STATIC is not set|CONFIG_STATIC=y|' $@
 
 _build/busybox/busybox:
-	make -C $(@D) -j
+	make -C $(@D) -j 4
 
 _target/bin/busybox:
 	make CONFIG_PREFIX=$$(readlink -f _target) -C _build/busybox install
@@ -87,7 +87,7 @@ _build/sedutil/config.h:
 			--localstatedir=/var
 
 _build/sedutil/sedutil-cli:
-	make -C $(@D) -j
+	make -C $(@D) -j 4
 	strip $@
 
 _target/usr/sbin/sedutil-cli:
