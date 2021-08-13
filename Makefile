@@ -111,3 +111,19 @@ _images/rootfs.cpio:
 
 _images/rootfs.cpio.gz:
 	gzip -9 _images/rootfs.cpio
+
+_images/minpba.img:
+	dd if=/dev/zero of=$@ bs=1M count=8
+	(echo 'n'; echo ''; echo ''; echo ''; echo 'ef00'; echo 'w'; echo 'Y') | gdisk $@
+	sudo losetup --show -o 1048576 /dev/loop1 $@
+	sudo mkfs.vfat -n UEFI64 /dev/loop1
+	sudo mkdir $@-mount
+	sudo mount /dev/loop1 $@-mount
+	sudo chmod 777 $@-mount
+	sudo mkdir -p $@-mount/EFI/minpba
+	sudo cp _build/linux/arch/x86_64/boot/bzImage $@-mount/EFI/minpba
+	sudo umount $@-mount
+	sudo losetup -d /dev/loop1
+
+_images/minpba.img.gz:
+	gzip -9 _images/minpba.img
