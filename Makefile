@@ -105,12 +105,6 @@ _target/usr/sbin/sedutil-cli:
 # filesystem #
 ##############
 
-_images/rootfs.cpio:
-	cd _target && find . -depth | sort | cpio -o -v -H newc > ../$@
-
-_images/rootfs.cpio.gz:
-	gzip -9 _images/rootfs.cpio
-
 _images/minpba.img:
 	dd if=/dev/zero of=$@ bs=1M count=8
 	(echo 'n'; echo ''; echo ''; echo ''; echo 'ef00'; echo 'w'; echo 'Y') | gdisk $@
@@ -123,6 +117,3 @@ _images/minpba.img:
 	sudo cp _build/linux/arch/x86_64/boot/bzImage $@-mount/EFI/BOOT/BOOTX64.EFI
 	sudo umount $@-mount
 	sudo losetup -d /dev/loop1
-
-_images/minpba.img.gz:
-	gzip -9 _images/minpba.img
