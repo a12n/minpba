@@ -7,6 +7,7 @@ all:	\
 	checksum	\
 	extract-busybox configure-busybox build-busybox install-busybox	\
 	extract-sedutil configure-sedutil build-sedutil install-sedutil	\
+	install-overlay	\
 	extract-linux configure-linux build-linux	\
 	build-image
 
@@ -110,6 +111,15 @@ _build/sedutil/sedutil-cli:
 _target/usr/sbin/sedutil-cli:
 	mkdir -p $(@D)
 	cp _build/sedutil/sedutil-cli $@
+
+###########
+# overlay #
+###########
+
+install-overlay: _target _target/init
+
+_target/init: init
+	cp $< $@
 
 #########
 # image #
