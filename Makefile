@@ -48,6 +48,7 @@ _build/busybox/busybox:
 _target/bin/busybox:
 	make CONFIG_PREFIX=$$(readlink -f _target) -C _build/busybox install
 	cp _build/busybox/busybox $@
+	rm _target/linuxrc
 
 #########
 # linux #
