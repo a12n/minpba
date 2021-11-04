@@ -1,8 +1,8 @@
 #!/bin/sh
 
-/bin/mount -t devtmpfs devtmpfs /dev
-/bin/mount -t proc proc /proc
-/bin/mount -t sysfs sysfs /sys
+/bin/mount -t devtmpfs none /dev
+/bin/mount -t proc none /proc
+/bin/mount -t sysfs none /sys
 
 # locked=1
 # disks=$(/usr/sbin/sedutil-cli --scan | /usr/bin/awk '/^\/dev/ { print $1 }')
@@ -13,4 +13,4 @@
 #     done
 # done
 
-sh
+exec /bin/sh
