@@ -117,10 +117,13 @@ _target/usr/sbin/sedutil-cli:
 # overlay #
 ###########
 
-install-overlay: _target _target/init
+install-overlay: _target _target/init _target/dev _target/proc _target/sys
 
 _target/init: init
 	cp $< $@
+
+_target/dev _target/proc _target/sys:
+	mkdir $@
 
 #########
 # image #
