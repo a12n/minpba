@@ -117,13 +117,18 @@ _target/usr/sbin/sedutil-cli:
 # overlay #
 ###########
 
-install-overlay: _target _target/init _target/dev _target/proc _target/sys
+install-overlay: _target _target/init _target/dev _target/dev/console _target/proc _target/sys
 
 _target/init: init
 	cp $< $@
 
 _target/dev _target/proc _target/sys:
 	mkdir $@
+
+_target/dev/console:
+	sudo mknod $@ c 5 1
+	sudo chown $(shell id -u):$(shell id -g) $@
+	chmod 620 $@
 
 #########
 # image #
