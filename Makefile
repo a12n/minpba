@@ -70,7 +70,7 @@ _build/linux:
 	tar -Jxf _dl/linux-$(LINUX_VSN).tar.xz --strip-components=1 -C $@
 
 _build/linux/.config:
-	cp linux.config $@
+	cp linux.config.in $@
 	sed -i "s|@INITRAMFS_SOURCE@|$$(readlink -f _target)|" $@
 
 _build/linux/arch/x86_64/boot/bzImage:
