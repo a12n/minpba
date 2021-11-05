@@ -137,7 +137,7 @@ _target/dev/console:
 build-image: _images _images/minpba.img
 
 _images/minpba.img: _mnt
-	dd if=/dev/zero of=$@ bs=1M count=8
+	dd if=/dev/zero of=$@ bs=1M count=34
 	(echo 'n'; echo ''; echo ''; echo ''; echo 'ef00'; echo 'w'; echo 'Y') | gdisk $@
 	sudo losetup -P -v /dev/loop1 $@
 	sudo mkfs.vfat /dev/loop1p1
