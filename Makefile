@@ -143,7 +143,7 @@ _images/minpba.img: _mnt
 	sudo mkfs.vfat -v -F 32 /dev/loop1p1
 	sudo mount /dev/loop1p1 _mnt
 	sudo chmod 777 _mnt
-	sudo mkdir -p _mnt/EFI/BOOT
-	sudo cp _build/linux/arch/x86_64/boot/bzImage _mnt/EFI/BOOT/BOOTX64.EFI
+	sudo mkdir -p _mnt/efi/boot
+	sudo cp _build/linux/arch/x86_64/boot/bzImage _mnt/efi/boot/bootx64.efi
 	sudo umount _mnt
 	sudo losetup -d /dev/loop1
