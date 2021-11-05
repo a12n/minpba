@@ -13,4 +13,4 @@
 #     done
 # done
 
-exec /bin/sh
+/sbin/reboot -f
