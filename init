@@ -4,14 +4,21 @@
 /bin/mount -t proc none /proc
 /bin/mount -t sysfs none /sys
 
-unlocked=1
+/bin/stty -echo
+
+unlocked=0
 while [ $unlocked -ne 1 ]; do
     disks=$(/usr/sbin/sedutil-cli --scan | /usr/bin/awk '$1 ~ /^\/dev/ && $2 ~ /2/ { print $1 }')
-    # TODO
-#     for disk in /dev/nvme?n?; do
-#         echo -n 'Password: '
-#         read -r -s password
-#     done
+    for disk in disks; do
+        echo -n "Unlock $disk: "
+        if ! read -r password; then
+            continue
+        fi
+        if /usr/sbin/sedutil-cli --setLockingRange 0 rw $password $disk; then
+            /usr/sbin/sedutil-cli --setMBRDone on $password $disk
+            unlocked=1
+        fi
+    done
 done
 
 /sbin/reboot -f
