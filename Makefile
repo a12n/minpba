@@ -140,7 +140,7 @@ _images/minpba.img: _mnt
 	dd if=/dev/zero of=$@ bs=1M count=34
 	(echo 'g'; echo 'n'; echo ''; echo ''; echo ''; echo 't'; echo '1'; echo 'w') | fdisk $@
 	sudo losetup -P -v /dev/loop1 $@
-	sudo mkfs.vfat /dev/loop1p1
+	sudo mkfs.vfat -v -F 32 /dev/loop1p1
 	sudo mount /dev/loop1p1 _mnt
 	sudo chmod 777 _mnt
 	sudo mkdir -p _mnt/EFI/BOOT
