@@ -5,7 +5,6 @@
 /bin/mount -t sysfs none /sys
 
 /bin/stty -echo
-
 unlocked=0
 while [ $unlocked -ne 1 ]; do
     disks=$(/usr/sbin/sedutil-cli --scan | /usr/bin/awk '$1 ~ /^\/dev/ && $2 ~ /2/ { print $1 }')
@@ -20,5 +19,6 @@ while [ $unlocked -ne 1 ]; do
         fi
     done
 done
+/bin/stty echo
 
 /sbin/reboot -f
