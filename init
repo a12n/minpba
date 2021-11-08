@@ -7,8 +7,7 @@
 /bin/stty -echo
 unlocked=0
 while [ $unlocked -ne 1 ]; do
-    disks=$(/usr/sbin/sedutil-cli --scan | /usr/bin/awk '$1 ~ /^\/dev/ && $2 ~ /2/ { print $1 }')
-    for disk in disks; do
+    for disk in $(/usr/sbin/sedutil-cli --scan | /usr/bin/awk '$1 ~ /^\/dev/ && $2 ~ /2/ { print $1 }'); do
         echo -n "Unlock $disk: "
         if ! read -r password; then
             continue
