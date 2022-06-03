@@ -1,6 +1,6 @@
 BUSYBOX_VSN = 1.33.1
 LINUX_VSN = 5.13.10
-SEDUTIL_VSN = 1.15.1.01
+SEDUTIL_VSN = 8364306
 
 all:	\
 	fetch-busybox fetch-linux fetch-sedutil	\
@@ -91,7 +91,7 @@ build-sedutil: _build/sedutil/sedutil-cli
 install-sedutil: _target _target/usr/sbin/sedutil-cli
 
 _dl/sedutil-$(SEDUTIL_VSN).tar.gz:
-	wget -O $@ https://github.com/Drive-Trust-Alliance/sedutil/archive/refs/tags/$(SEDUTIL_VSN).tar.gz
+	wget -O $@ https://github.com/badicsalex/sedutil/tarball/$(SEDUTIL_VSN)
 
 _build/sedutil:
 	mkdir $@
