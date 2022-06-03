@@ -1,0 +1,48 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          sedsavepwd
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Save SED unlock key in the kernel memory
+### END INIT INFO
+
+PATH=/bin:/usr/local/sbin
+
+. /lib/init/vars.sh
+
+LOCKING_RANGE=0
+
+if [ -f /etc/default/sedsavepwd ] ; then
+  . /etc/default/sedsavepwd
+fi
+
+case "$1" in
+  start|"")
+	if [ -n "$DEVICE" -a -n "$PASSWORD_HASH" ]; then
+	  [ "$VERBOSE" != no ] && log_action_begin_msg "Saving SED unlock key for '$DEVICE'"
+	  sedutil-cli -n -x --prepareForS3Sleep $LOCKING_RANGE $PASSWORD_HASH $DEVICE
+	  ES=$?
+	  [ "$VERBOSE" != no ] && log_action_end_msg $ES
+	  exit $ES
+	else
+	  echo "Error: no DEVICE or PASSWORD_HASH in /etc/default/sedsavepwd" >&2
+	  exit 3
+	fi
+	;;
+  restart|reload|force-reload)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
+  stop)
+	# No-op
+	;;
+  status)
+	exit 0
+	;;
+  *)
+	echo "Usage: sedsavepwd [start|stop]" >&2
+	exit 3
+	;;
+esac
